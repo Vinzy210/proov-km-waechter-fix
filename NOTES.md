@@ -1,12 +1,12 @@
 # What I checked, and what the agent got wrong
 
-Write this yourself, in your own words. It is the part of the repo that proves the work is yours.
+I noticed that the agent found several bugs in the existing code. One important and major bug was using the // insetead of / .Because of this 14,900 km out of 15,000km was incorrectly treated as havin 0% wear. 
 
 ## What the agent got wrong
-(Every agent gets something wrong on a job this size. What did you catch? How did you notice?)
+I also checked the handling of cars where last_service_km was missing.These cars shouldn't have treated automatically as if they were being serviced at 0 km.
 
 ## What I checked before I accepted its work
-(How do you KNOW the wear bug is fixed and the 80% rule is untouched? What did you run?)
+I checked that the service interval was still 15,000km and that the warning threshold still set to 80%.The agent changed how the percentage was calculated, but it did not change the actual rules. A car is still marked for service when its wear reaches or goes above 80% of the 15,000km service interval.
 
 ## What the data actually said
-(Which factors predict a breakdown, and which obvious-looking one turned out not to?)
+The analysis clearly showed that the "avg_daily_km" and "load_factor" were the main factors that showed the difference between cars that broke down and card that didn't.The average daily kms increased from 131-160 and the load factor increased from 0.50 to 0.60.On the other hand "odometer_km" and "age_years" were almost te same for both groups so they weren't the strong predictors in this dataset.
